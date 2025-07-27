@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/constance.dart';
 
-class CustomTextFiled extends StatelessWidget {
-  const CustomTextFiled({super.key, required this.hintText, this.maxLines = 1});
+class CustomTextFormFiled extends StatelessWidget {
+  const CustomTextFormFiled({
+    super.key,
+    required this.hintText,
+    this.maxLines = 1,
+
+    this.controller,
+    this.onSaved,
+  });
   final String hintText;
   final int maxLines;
+  final TextEditingController? controller;
+
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onSaved: onSaved,
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return 'Filed cannot be empty';
+        } else {
+          return null;
+        }
+      },
+      controller: controller,
       cursorColor: kPrimaryColor,
       maxLines: maxLines,
       decoration: InputDecoration(
