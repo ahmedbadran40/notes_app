@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/widget/custom_app_bar.dart';
 import 'package:notes_app/widget/custom_text_filed.dart';
 
-class EditNoteViewBody extends StatelessWidget {
-  const EditNoteViewBody({super.key});
+class customEditNoteViewBody extends StatelessWidget {
+  const customEditNoteViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
