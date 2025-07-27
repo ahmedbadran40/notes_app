@@ -9,7 +9,6 @@ class NotesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
