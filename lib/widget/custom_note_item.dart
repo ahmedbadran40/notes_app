@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
 class CustomNoteItem extends StatelessWidget {
-  const CustomNoteItem({super.key});
+  const CustomNoteItem({super.key, required this.noteModel});
+  final NoteModel noteModel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class CustomNoteItem extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.only(top: 24, bottom: 24, left: 16),
         decoration: BoxDecoration(
-          color: Color(0xffffcf7f),
+          color: Color(0xFFFFCF7F),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -29,20 +31,20 @@ class CustomNoteItem extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                'Flutter Tips',
-                style: TextStyle(fontSize: 26, color: Colors.black),
+                noteModel.title,
+                style: const TextStyle(fontSize: 26, color: Colors.black),
               ),
 
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                 child: Text(
-                  'Learn how to build beautiful apps with Flutter.',
-                  style: TextStyle(fontSize: 20, color: Colors.black54),
+                  noteModel.subTitle,
+                  style: const TextStyle(fontSize: 20, color: Colors.black54),
                 ),
               ),
               trailing: IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   FontAwesomeIcons.trash,
                   color: Colors.black,
                   size: 24,
@@ -53,8 +55,8 @@ class CustomNoteItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 24),
               child: Text(
-                'May25,2025',
-                style: TextStyle(fontSize: 16, color: Colors.black54),
+                noteModel.date,
+                style: const TextStyle(fontSize: 16, color: Colors.black54),
               ),
             ),
           ],
