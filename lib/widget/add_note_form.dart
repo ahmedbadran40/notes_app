@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:notes_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app/helper/create_not_model.dart';
 import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widget/colors_list_view.dart';
 import 'package:notes_app/widget/custom_bottom.dart';
 import 'package:notes_app/widget/custom_text_filed.dart';
 
@@ -42,7 +44,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
               content = value;
             },
           ),
+          const ColorsListView(),
           const SizedBox(height: 24),
+
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomBottom(
@@ -50,13 +54,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 onTap: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    var noteModel = NoteModel(
+                    final noteModel = createNoteModel(
                       title: title!,
-                      subTitle: content!,
-                      date: DateFormat('dd-MM-yyy').format(DateTime.now()),
-                      color: 0xFF2196F3,
+                      content: content!,
                     );
-
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                   } else {
                     setState(() {
